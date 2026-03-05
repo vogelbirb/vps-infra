@@ -1,0 +1,34 @@
+{
+	email {$EMAIL}
+	log {
+		format console
+	}
+}
+
+matheuslp.com {
+	redir https://www.{host}{uri}
+}
+
+www.matheuslp.com {
+	reverse_proxy mlp-homepage:8000
+}
+
+vogelbirb.com {
+	handle_path /s/* {
+		rewrite /public.php/dav/files{uri}
+		reverse_proxy https://cloud.matheuslp.com {
+			header_up Host {upstream_hostport}
+		}
+        }
+
+	handle / {
+		redir https://www.{host}{uri}
+	}
+}
+www.vogelbirb.com {
+	reverse_proxy vogelbirb-homepage:3000
+}
+
+status.matheuslp.com {
+	reverse_proxy uptime-kuma:3001
+}
