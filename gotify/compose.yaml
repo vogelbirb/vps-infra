@@ -1,0 +1,16 @@
+services:
+  gotify:
+    image: gotify/server
+    networks:
+      - web-net
+    environment:
+      GOTIFY_DEFAULTUSER_PASS: 'admin'
+    volumes:
+      - 'gotify-data:/app/data'
+
+volumes:
+  gotify-data:
+
+networks:
+  web-net:
+    external: true

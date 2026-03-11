@@ -32,3 +32,7 @@ www.vogelbirb.com {
 status.matheuslp.com {
 	reverse_proxy uptime-kuma:3001
 }
+
+gotify.matheuslp.com {
+	reverse_proxy gotify:80
+}
