@@ -5,6 +5,10 @@
 	}
 }
 
+mathlp.com {
+	redir https://www.matheuslp.com{uri}
+}
+
 matheuslp.com {
 	redir https://www.{host}{uri}
 }
@@ -19,7 +23,7 @@ vogelbirb.com {
 		reverse_proxy https://cloud.matheuslp.com {
 			header_up Host {upstream_hostport}
 		}
-        }
+	}
 
 	handle / {
 		redir https://www.{host}{uri}

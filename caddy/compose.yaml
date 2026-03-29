@@ -2,6 +2,7 @@ services:
   # Reverse proxy
   caddy:
     image: caddy:latest
+    container_name: caddy
     restart: always
     cap_add:
       - NET_ADMIN
@@ -10,19 +11,13 @@ services:
       - "443:443"
       - "443:443/udp"
     volumes:
+      - ./conf:/etc/caddy
       - caddy_data:/data
       - caddy_config:/config
     networks:
       - web-net
     environment:
       EMAIL: ${EMAIL?error}
-    configs:
-      - source: caddyfile
-        target: /etc/caddy/Caddyfile
-
-configs:
-  caddyfile:
-    file: ./Caddyfile
 
 volumes:
   caddy_data:
