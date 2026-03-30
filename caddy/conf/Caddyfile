@@ -14,7 +14,8 @@ matheuslp.com {
 }
 
 www.matheuslp.com {
-	reverse_proxy mlp-homepage:8000
+	root /srv/mlp-homepage
+	file_server
 }
 
 vogelbirb.com {
@@ -29,8 +30,10 @@ vogelbirb.com {
 		redir https://www.{host}{uri}
 	}
 }
+
 www.vogelbirb.com {
-	reverse_proxy vogelbirb-homepage:3000
+	root /srv/vogelbirb-homepage
+	file_server
 }
 
 status.matheuslp.com {
