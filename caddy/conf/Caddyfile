@@ -14,6 +14,13 @@ matheuslp.com {
 }
 
 www.matheuslp.com {
+	@plausible path /js/script.js /api/event
+	handle @plausible {
+		rewrite /js/script.js /js/pa-NPa5wTZ2W52_ThS3BxMrF.js
+		reverse_proxy https://plausible.matheuslp.com {
+			header_up Host {http.reverse_proxy.upstream.hostport}
+		}
+	}
 	root /srv/mlp-homepage
 	file_server
 }
@@ -32,11 +39,18 @@ vogelbirb.com {
 }
 
 www.vogelbirb.com {
+	@plausible path /js/script.js /api/event
+	handle @plausible {
+		rewrite /js/script.js /js/pa-nTBMZ2zTK6Lpwm3vxE1dR.js
+		reverse_proxy https://plausible.matheuslp.com {
+			header_up Host {http.reverse_proxy.upstream.hostport}
+		}
+	}
 	root /srv/vogelbirb-homepage
 	file_server
 }
 
-status.matheuslp.com {
+status.matheuslp.com, status.vogelbirb.com {
 	reverse_proxy uptime-kuma:3001
 }
 
